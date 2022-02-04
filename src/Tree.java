@@ -34,7 +34,7 @@ public class Tree {
         String add ="";
         for(int i = 0; i<gap; i++)
             add+=" ";
-        add+=node.name;
+        add+=" ["+node.name+"] ";
         tree.set(index, tree.get(index)+add);
     }
 
@@ -52,6 +52,7 @@ public class Tree {
 
         totalLevel(root);
         for (int i=0; i<level;i++) {
+            tree.add("");
             tree.add("");
         }
 
@@ -80,7 +81,7 @@ public class Tree {
         }
 
         if(tree.get(start.getLevel()).length() > width)
-            width++;
+            width = tree.get(start.getLevel()).length();
         else if(tree.get(start.getLevel()).length() < width){
             fillGap(start.getLevel());
         }
