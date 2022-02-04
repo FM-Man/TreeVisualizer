@@ -49,4 +49,14 @@ public class Node {
             return children.get(traversedIndex-1);
         }
     }
+
+    public int getLevel(){
+        int level = 0;
+        Node x = this;
+        while(x.parent != null){
+            level++;
+            x = x.parent;
+        }
+        return level;
+    }
 }

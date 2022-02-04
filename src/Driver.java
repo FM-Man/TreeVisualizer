@@ -21,9 +21,9 @@ public class Driver {
 
         Tree tree = new Tree(a);
         tree.traverse(tree.root);
-        
-        System.out.println("idk");
+        for (String s:tree.tree) {
+            System.out.println(s);
+        }
+
     }
-    
-    
 }
