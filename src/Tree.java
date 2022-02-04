@@ -1,3 +1,7 @@
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Tree {
@@ -24,18 +28,32 @@ public class Tree {
     private void fillGap(int index){
         int gap = width-tree.get(index).length();
         String add ="";
-        for(int i = 0; i<gap; i++)
+        String add2 = "";
+        for(int i = 0; i<gap; i++){
             add+=" ";
+            add2+="—";
+        }
         tree.set(index, tree.get(index)+add);
+        tree.set(index-1, tree.get(index-1)+add2);
     }
 
     private void fillGap(int index, Node node){
         int gap = width - tree.get(index).length();
         String add ="";
-        for(int i = 0; i<gap; i++)
+        String add2 = "";
+        for(int i = 0; i<gap; i++){
             add+=" ";
+            add2+="—";
+        }
+        int wordlength = node.name.length()+4;
+        for(int i = 0; i<wordlength;i++){
+            if(i == (wordlength-1)/2+1)
+                add2+="|";
+            else add2+="—";
+        }
         add+=" ["+node.name+"] ";
         tree.set(index, tree.get(index)+add);
+        tree.set(index-1, tree.get(index-1)+add2);
     }
 
     private void totalLevel(Node start){
@@ -48,7 +66,7 @@ public class Tree {
     }
 
 
-    public void print(){
+    public void print() throws IOException {
 
         totalLevel(root);
         for (int i=0; i<level;i++) {
@@ -56,17 +74,20 @@ public class Tree {
             tree.add("");
         }
 
-        fillGap(0,root);
+        fillGap(1,root);
 
         for (Node child : root.children) {
             traverse(child);
         }
 
-        if(tree.get(0).length() > width)
-            width++;
-        else if(tree.get(0).length() < width){
-            fillGap(0);
+        if(tree.get(1).length() > width){
+            width=tree.get(1).length();
         }
+        else if(tree.get(1).length() < width){
+            fillGap(1);
+        }
+
+
 
         for (String s:tree) {
             System.out.println(s);
@@ -74,16 +95,16 @@ public class Tree {
     }
 
     public void traverse(Node start){
-        fillGap(start.getLevel(),start);
+        fillGap(2*start.getLevel()+1,start);
 
         for (Node child : start.children) {
             traverse(child);
         }
 
-        if(tree.get(start.getLevel()).length() > width)
-            width = tree.get(start.getLevel()).length();
-        else if(tree.get(start.getLevel()).length() < width){
-            fillGap(start.getLevel());
+        if(tree.get( 2*start.getLevel()+1 ).length() > width)
+            width = tree.get( 2*start.getLevel()+1 ).length();
+        else if(tree.get( 2*start.getLevel()+1 ).length() < width){
+            fillGap( 2*start.getLevel()+1 );
         }
     }
 }

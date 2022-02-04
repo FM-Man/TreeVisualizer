@@ -1,7 +1,8 @@
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Driver {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Node a = new Node("alfred");
         Node b = new Node(a,"brian");
         Node c = new Node(a,"charles");
