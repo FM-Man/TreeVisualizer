@@ -2,7 +2,6 @@ import java.util.ArrayList;
 
 public class Driver {
     public static void main(String[] args) {
-        ArrayList<Node> al = new ArrayList<>();
         Node a = new Node("a");
         Node b = new Node(a,"b");
         Node c = new Node(a,"c");
@@ -18,12 +17,11 @@ public class Driver {
         Node m = new Node(f,"m");
         Node n = new Node(g,"n");
         Node o = new Node(g,"o");
+        Node p = new Node(l,"p");
+        Node q = new Node(l,"q");
+
 
         Tree tree = new Tree(a);
-        tree.traverse(tree.root);
-        for (String s:tree.tree) {
-            System.out.println(s);
-        }
-
+        tree.print();
     }
 }

@@ -5,7 +5,6 @@ public class Node {
     public ArrayList<Node> children;
     public Node parent;
     public int traversedIndex = 0;
-    public boolean isVisited = false;
 
     public Node(String name){
         this.name = name;
