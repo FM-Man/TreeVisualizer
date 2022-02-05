@@ -5,11 +5,14 @@ public class Node {
     public ArrayList<Node> children;
     public Node parent;
     public int traversedIndex = 0;
+    public int generation=0;
+    public int stringNo;
 
     public Node(String name){
         this.name = name;
         children = new ArrayList<>();
         parent = null;
+        if(Driver.highestGeneration <= generation) Driver.highestGeneration = generation;
     }
 
     public Node(Node parent, String name){
@@ -17,6 +20,8 @@ public class Node {
         this.parent.addChild(this);
         this.name = name;
         children = new ArrayList<>();
+        generation = parent.generation+1;
+        if(Driver.highestGeneration <= generation) Driver.highestGeneration = generation;
     }
 
     public Node(String name, ArrayList<Node> children){
@@ -25,6 +30,8 @@ public class Node {
         parent = null;
         for (Node n: children) {
             n.parent = this;
+            n.generation = generation+1;
+            if(Driver.highestGeneration <= n.generation) Driver.highestGeneration = n.generation;
         }
     }
 
@@ -35,11 +42,15 @@ public class Node {
         this.children = children;
         for (Node n: children) {
             n.parent = this;
+            n.generation = generation+1;
+            if(Driver.highestGeneration <= n.generation) Driver.highestGeneration = n.generation;
         }
     }
     public void addChild(Node node){
         children.add(node);
         node.parent = this;
+        node.generation = generation+1;
+        if(Driver.highestGeneration <= node.generation) Driver.highestGeneration = node.generation;
     }
     public Node nextChild(){
         if(traversedIndex>=children.size()) return null;
