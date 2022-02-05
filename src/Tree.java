@@ -11,17 +11,6 @@ public class Tree {
         this.root = root;
     }
 
-    private String printLineage(Node start){
-        String s ="";
-        s+=start.name;
-        Node i = start;
-        while(i.parent != null){
-            s+="->"+i.parent.name;
-            i = i.parent;
-        }
-        return s;
-    }
-
     private void fillGapLater(int index, Node node){
         int gap = width-tree.get(index).length();
         String add ="";
@@ -49,7 +38,6 @@ public class Tree {
         }
         int wordlength = node.name.length()+4;
         for(int i = 0; i<(wordlength-1)/2+1;i++){
-
             if(node.parent != null) if(!node.equals(node.parent.children.get(0))){
                 add2+="—";
             }
@@ -78,8 +66,7 @@ public class Tree {
         }
     }
 
-
-    public void print() throws IOException {
+    public void print() {
 
         totalLevel(root);
         for (int i=0; i<level;i++) {
@@ -100,8 +87,7 @@ public class Tree {
             fillGapLater(1, root);
         }
 
-
-        tree.set(0,"");
+        tree.remove(0);
         for (String s:tree) {
             System.out.println(s);
         }
