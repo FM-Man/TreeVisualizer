@@ -42,8 +42,9 @@ public class Tree2 {
         node.stringNo = currentString;
 
         //adding the horizontal gap
-        for(int i = tree.get(currentString).length()-1; i < node.parent.generation*genGap; i++){
-            tree.set(currentString, tree.get(currentString)+" ");
+        for(int i = tree.get(currentString).length()-1; i < node.generation*genGap-2; i++){
+            if(!node.equals(node.parent.children.get(0)))
+                tree.set(currentString, tree.get(currentString)+" ");
         }
         //adding the horizontal line
         for (int i = tree.get(currentString).length()-1; i<node.generation*genGap; i++){
@@ -55,19 +56,24 @@ public class Tree2 {
             //filling the middle gaps
         for(int i = stn+1; i<currentString;i++){
             char[] arr = tree.get(i).toCharArray();
-            arr[node.parent.generation*genGap + 1] = '│';
+            arr[node.generation*genGap - 1] = '│';
             tree.set(i, String.valueOf(arr));
         }
             //if its a middle child
         if(!node.parent.children.get(0).equals(node) && !node.parent.children.get(node.parent.children.size()-1).equals(node)){
             char[] arr = tree.get(node.stringNo).toCharArray();
-            arr[node.parent.generation*genGap + 1] = '├';
+            arr[node.generation*genGap - 1] = '├';
             tree.set(node.stringNo, String.valueOf(arr));
         }
             //if its the last but not only child
         else if(!node.parent.children.get(0).equals(node)){
             char[] arr = tree.get(node.stringNo).toCharArray();
-            arr[node.parent.generation*genGap + 1] = '└';
+            arr[node.generation*genGap - 1] = '└';
+            tree.set(node.stringNo, String.valueOf(arr));
+        }
+        else if(node.parent.children.size() != 1 && node.parent.children.get(0).equals(node)){
+            char[] arr = tree.get(node.stringNo).toCharArray();
+            arr[node.generation*genGap - 1] = '┬';
             tree.set(node.stringNo, String.valueOf(arr));
         }
 

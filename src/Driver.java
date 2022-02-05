@@ -3,7 +3,7 @@
 public class Driver {
     public static int highestGeneration = 0;
     public static void main(String[] args) {
-        Node ayenUddin = new Node("Ayen");
+        Node ayenUddin = new Node("AyenUddin");
         Node mofazzal = new Node(ayenUddin,"Mofazzal");
         Node zakir = new Node(ayenUddin,"Zakir");
         Node jesmin = new Node(mofazzal,"Jesmin");
@@ -16,10 +16,11 @@ public class Driver {
         Node sarah = new Node(murad,"Sarah");
 
         Tree tree = new Tree(ayenUddin);
-        Tree2 tree2 = new Tree2(ayenUddin,10);
         tree.print();
         System.out.println();
         System.out.println();
+
+        Tree2 tree2 = new Tree2(ayenUddin,12);
         tree2.print();
     }
 }
