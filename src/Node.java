@@ -52,12 +52,14 @@ public class Node {
         node.generation = generation+1;
         if(Driver.highestGeneration <= node.generation) Driver.highestGeneration = node.generation;
     }
-    public Node nextChild(){
-        if(traversedIndex>=children.size()) return null;
-        else{
-            traversedIndex++;
-            return children.get(traversedIndex-1);
+    public Node previousSibling(){
+        if(parent == null) return null;
+        else if(parent.children.get(0).equals(this)) return null;
+        int i =0;
+        for (i = 0; i<parent.children.size(); i++){
+            if(parent.children.get(i).equals(this)) break;
         }
+        return parent.children.get(i-1);
     }
 
     public int getLevel(){

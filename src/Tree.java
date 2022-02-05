@@ -43,7 +43,16 @@ public class Tree {
             }
             else add2+=" ";
         }
-        add2+="|";
+        if (node.parent!=null){
+            if(node.parent.children.get(0).equals(node) && node.parent.children.size()!=1)
+                add2 += '├';
+            else if(node.parent.children.size() == 1)
+                add2 += '│';
+            else if(node.parent.children.get(node.parent.children.size()-1).equals(node))
+                add2 += '┐';
+            else
+                add2+= '┬';
+        }
         for(int i = (wordlength-1)/2+2; i<wordlength;i++){
             if(node.parent != null) if(!node.equals(node.parent.children.get(node.parent.children.size()-1))){
                 add2+="—";

@@ -20,7 +20,6 @@ public class Driver {
         tree.print();
         System.out.println();
         System.out.println();
-        System.out.println();
         tree2.print();
     }
 }

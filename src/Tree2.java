@@ -50,11 +50,27 @@ public class Tree2 {
             tree.set(currentString, tree.get(currentString)+"—");
         }
         //adding the vertical line
-        for(int i = node.parent.stringNo+1; i<currentString+1;i++){
+            //to start from the previous child
+        int stn = node.previousSibling()==null? node.parent.stringNo : node.previousSibling().stringNo;
+            //filling the middle gaps
+        for(int i = stn+1; i<currentString;i++){
             char[] arr = tree.get(i).toCharArray();
-            arr[node.parent.generation*genGap + 1] = '|';
+            arr[node.parent.generation*genGap + 1] = '│';
             tree.set(i, String.valueOf(arr));
         }
+            //if its a middle child
+        if(!node.parent.children.get(0).equals(node) && !node.parent.children.get(node.parent.children.size()-1).equals(node)){
+            char[] arr = tree.get(node.stringNo).toCharArray();
+            arr[node.parent.generation*genGap + 1] = '├';
+            tree.set(node.stringNo, String.valueOf(arr));
+        }
+            //if its the last but not only child
+        else if(!node.parent.children.get(0).equals(node)){
+            char[] arr = tree.get(node.stringNo).toCharArray();
+            arr[node.parent.generation*genGap + 1] = '└';
+            tree.set(node.stringNo, String.valueOf(arr));
+        }
+
         tree.set(currentString,tree.get(currentString)+node.name);
 
         for (Node n:node.children) {
