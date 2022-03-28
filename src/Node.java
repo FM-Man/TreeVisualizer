@@ -4,7 +4,6 @@ public class Node {
     public String name;
     public ArrayList<Node> children;
     public Node parent;
-    public int traversedIndex = 0;
     public int generation=0;
     public int stringNo;
 
@@ -55,7 +54,7 @@ public class Node {
     public Node previousSibling(){
         if(parent == null) return null;
         else if(parent.children.get(0).equals(this)) return null;
-        int i =0;
+        int i;
         for (i = 0; i<parent.children.size(); i++){
             if(parent.children.get(i).equals(this)) break;
         }

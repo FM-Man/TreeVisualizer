@@ -7,20 +7,21 @@ public class Driver {
         Node mofazzal = new Node(ayenUddin,"Mofazzal");
         Node zakir = new Node(ayenUddin,"Zakir");
         Node jesmin = new Node(mofazzal,"Jesmin");
-        Node lubna = new Node(mofazzal,"Lubna");
+        new Node(mofazzal, "Lubna");
         Node murad = new Node(mofazzal,"Murad");
-        Node sajib = new Node(zakir,"Tanvir");
-        Node fuad = new Node(zakir,"Fuad");
-        Node fahim = new Node(jesmin,"Fahim");
-        Node niaz = new Node(jesmin,"Niaz");
-        Node sarah = new Node(murad,"Sarah");
+        new Node(zakir, "Tanvir");
+        new Node(zakir, "Fuad");
+        new Node(jesmin, "Fahim");
+        new Node(jesmin, "Niaz");
+        new Node(murad, "Sarah");
 
-        Tree tree = new Tree(ayenUddin);
+        TreeVertical tree = new TreeVertical(ayenUddin);
         tree.print();
+
         System.out.println();
         System.out.println();
 
-        Tree2 tree2 = new Tree2(ayenUddin,12);
+        TreeHorizontal tree2 = new TreeHorizontal(ayenUddin,12);
         tree2.print();
     }
 }

@@ -1,26 +1,25 @@
-import java.io.IOException;
 import java.util.ArrayList;
 
-public class Tree {
+public class TreeVertical {
     public Node root;
-    private ArrayList<String> tree = new ArrayList<>();
+    private final ArrayList<String> tree = new ArrayList<>();
     int width = 1;
     int level = 0;
 
-    public Tree(Node root){
+    public TreeVertical(Node root){
         this.root = root;
     }
 
     private void fillGapLater(int index, Node node){
         int gap = width-tree.get(index).length();
-        String add ="";
-        String add2 = "";
+        StringBuilder add = new StringBuilder();
+        StringBuilder add2 = new StringBuilder();
         for(int i = 0; i<gap; i++){
-            add+=" ";
+            add.append(" ");
 
             if(node.parent!=null) if(!node.equals(node.parent.children.get(node.parent.children.size()-1)))
-                add2+="—";
-            else add2+=" ";
+                add2.append("—");
+            else add2.append(" ");
         }
         tree.set(index, tree.get(index)+add);
         tree.set(index-1, tree.get(index-1)+add2);
@@ -28,40 +27,40 @@ public class Tree {
 
     private void fillGap(int index, Node node){
         int gap = width - tree.get(index).length();
-        String add ="";
-        String add2 = "";
+        StringBuilder add = new StringBuilder();
+        StringBuilder add2 = new StringBuilder();
         for(int i = 0; i<gap; i++){
-            add+=" ";
+            add.append(" ");
             if(node.parent!=null) if(!node.equals(node.parent.children.get(0)))
-                add2+="—";
-            else add2+=" ";
+                add2.append("—");
+            else add2.append(" ");
         }
-        int wordlength = node.name.length()+4;
-        for(int i = 0; i<(wordlength-1)/2+1;i++){
+        int wordLength = node.name.length()+4;
+        for(int i = 0; i<(wordLength-1)/2+1;i++){
             if(node.parent != null) if(!node.equals(node.parent.children.get(0))){
-                add2+="—";
+                add2.append("—");
             }
-            else add2+=" ";
+            else add2.append(" ");
         }
         if (node.parent!=null){
             if(node.parent.children.get(0).equals(node) && node.parent.children.size()!=1)
-                add2 += '├';
+                add2.append('├');
             else if(node.parent.children.size() == 1)
-                add2 += '│';
+                add2.append('│');
             else if(node.parent.children.get(node.parent.children.size()-1).equals(node))
-                add2 += '┐';
+                add2.append('┐');
             else
-                add2+= '┬';
+                add2.append('┬');
         }
-        for(int i = (wordlength-1)/2+2; i<wordlength;i++){
+        for(int i = (wordLength-1)/2+2; i<wordLength;i++){
             if(node.parent != null) if(!node.equals(node.parent.children.get(node.parent.children.size()-1))){
-                add2+="—";
+                add2.append("—");
             }
-            else add2+=" ";
+            else add2.append(" ");
         }
 
 
-        add+=" ["+node.name+"] ";
+        add.append(" [").append(node.name).append("] ");
         tree.set(index, tree.get(index)+add);
         tree.set(index-1, tree.get(index-1)+add2);
     }

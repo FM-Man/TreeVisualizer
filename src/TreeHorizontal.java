@@ -1,17 +1,16 @@
-import java.io.IOException;
 import java.util.ArrayList;
 
-public class Tree2 {
+public class TreeHorizontal {
     public Node root;
     private ArrayList<String> tree = new ArrayList<>();
     int currentString = 0;
     int totalString = 0;
     int genGap = 10;
 
-    public Tree2(Node root){
+    public TreeHorizontal(Node root){
         this.root = root;
     }
-    public Tree2(Node root, int genGap){
+    public TreeHorizontal(Node root, int genGap){
         this.root = root;
         this.genGap = genGap;
     }
